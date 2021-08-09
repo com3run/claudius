@@ -21,7 +21,7 @@ import java.lang.Thread.sleep
 
 
 @RunWith(AndroidJUnit4::class)
-class BottomNavViewTest : BaseRobot() {
+class FormTest : BaseRobot() {
     @get:Rule
     val activityRule = ActivityTestRule(MainActivity::class.java)
 
