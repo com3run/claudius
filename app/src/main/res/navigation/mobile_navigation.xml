@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.surveymonkey.ui.splash.SplashFragment"
+        android:label=""
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/mobile_navigation" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.surveymonkey.ui.auth.login.LoginFragment"
+        android:label="@string/login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.surveymonkey.ui.auth.register.RegisterFragment"
+        android:label="@string/register"
+        tools:layout="@layout/fragment_register" />
+
+    <fragment
+        android:id="@+id/formFragment"
+        android:name="com.surveymonkey.ui.main.FormFragment"
+        android:label="@string/form"
+        tools:layout="@layout/fragment_form">
+        <action
+            android:id="@+id/action_formFragment_to_savedFragment"
+            app:destination="@id/savedFragment" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_formFragment"
+        app:destination="@id/formFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popUpTo="@id/mobile_navigation" />
+
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="com.surveymonkey.ui.saved.SavedFragment"
+        android:label="@string/saved"
+        tools:layout="@layout/fragment_saved">
+        <action
+            android:id="@+id/action_savedFragment_to_savedDetailFragment"
+            app:destination="@id/savedDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/savedDetailFragment"
+        android:name="com.surveymonkey.ui.saved.detail.SavedDetailFragment"
+        android:label="@string/details"
+        tools:layout="@layout/fragment_saved_detail">
+
+        <argument
+            android:name="pojo"
+            app:argType="com.surveymonkey.data.model.SavedFormPOJO" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_splashFragment"
+        app:destination="@id/splashFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popUpTo="@id/mobile_navigation" />
+
+</navigation>

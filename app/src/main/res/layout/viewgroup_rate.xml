@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/nameTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:textColor="?colorOnBackground"
+        tools:text="@tools:sample/lorem" />
+
+    <com.shawnlin.numberpicker.NumberPicker
+        android:id="@+id/np"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:np_orientation="horizontal"
+        app:np_dividerColor="?colorOnBackground"
+        app:np_max="10"
+        app:np_min="1"
+        app:np_wheelItemCount="11"
+        app:np_divider="@color/transparent"
+        app:np_selectedTextUnderline="true"
+        app:np_selectedTextColor="?colorOnBackground"
+        app:np_selectedTextSize="24sp"
+        app:np_textColor="@color/gray"
+        app:np_textSize="20sp"
+        app:np_value="5"
+        app:layout_constraintTop_toBottomOf="@+id/nameTxt" />
+</androidx.constraintlayout.widget.ConstraintLayout>

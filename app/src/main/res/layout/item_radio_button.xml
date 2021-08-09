@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge tools:parentTag="Rad"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.AppCompatRadioButton android:id="@+id/radioBtn"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:button="@null"
+        android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+        android:text="@{pojo.question}"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:textColor="?colorOnBackground"
+        tools:text="@tools:sample/lorem"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" />
+
+</merge>

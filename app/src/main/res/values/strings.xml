@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">SurveyMonkey</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username">Username</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="cancel">cancel</string>
+    <string name="ok">Ok</string>
+    <string name="wait_please">Wait please</string>
+    <string name="username_already_exists">Username already exists</string>
+    <string name="user_not_fount">User not found</string>
+    <string name="form">Form</string>
+    <string name="note">Note...</string>
+    <string name="save">Save</string>
+    <string name="saved">Saved</string>
+    <string name="exit">Exit</string>
+    <string name="details">Details</string>
+    <string name="form_list_is_empty">Form list is empty</string>
+</resources>
