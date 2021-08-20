@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
+import com.surveymonkey.data.model.ErrorDialogModel
 import com.surveymonkey.utils.dialogs.ErrorDialog
 import com.surveymonkey.utils.extensions.supportActionBar
 
@@ -22,10 +23,13 @@ abstract class BaseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel?.showErrorDialog
-            ?.observe(viewLifecycleOwner) { errorDialog.show(context, it) }
+        viewModel?.showErrorDialog?.observe(viewLifecycleOwner) { errorDialog.show(context, it) }
 
         initActionBar()
+    }
+
+    fun showError(model: ErrorDialogModel?) {
+        errorDialog.show(context, model)
     }
 
     private fun initActionBar() {

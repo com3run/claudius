@@ -11,8 +11,8 @@ data class AnswerEntity(
     val userId: Long?=null,
     @ColumnInfo(name = "question_id")
     val questionId: Long? = null,
-    @ColumnInfo(name = "saved_form_Id")
-    val savedFormId: Long?,
+    @ColumnInfo(name = "form_Id")
+    val formId: Long?,
     @ColumnInfo(name = "variant_id")
     val variantId: Long? = null,
     @ColumnInfo(name = "note")

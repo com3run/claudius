@@ -10,8 +10,10 @@ data class QuestionEntity(
     @PrimaryKey(autoGenerate = true) val id: Int? = null,
     @ColumnInfo(name = "form_id")
     val formId: Long?,
-    @ColumnInfo(name = "question")
-    val question: String?,
+    @ColumnInfo(name = "name")
+    val name: String?,
     @ColumnInfo(name = "type")
     val type: QuestionType? = QuestionType.NOTE_ANSWER,
+    @ColumnInfo(name = "required")
+    val required: Boolean = false
 )

@@ -16,7 +16,7 @@ interface UserDao {
     suspend fun delete(userModel: UserEntity)
 
     @Query("Select * from Users")
-    fun getUsers(): LiveData<List<UserEntity>>
+    suspend fun getUsers(): List<UserEntity>
 
     @Query("Select * from Users where id == :id")
     fun getUserById(id: Long?): UserEntity?

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.navigation.fragment.findNavController
 import com.surveymonkey.R
+import com.surveymonkey.data.model.ErrorDialogModel
 import com.surveymonkey.databinding.FragmentFormBinding
 import com.surveymonkey.manager.SessionManager
 import com.surveymonkey.ui.base.BaseFragment
@@ -38,6 +39,10 @@ class FormFragment : BaseFragment() {
                 binding.recyclerView.scrollToPosition(0)
             }
         }
+
+        viewModel.errorMsg.observe(viewLifecycleOwner){
+            showError(ErrorDialogModel(messageRes = it))
+        }
     }
 
     private fun initAdapter() {
@@ -57,10 +62,13 @@ class FormFragment : BaseFragment() {
         when (item.itemId) {
             R.id.savedItem -> {
                 findNavController().navigate(
-                    FormFragmentDirections.actionFormFragmentToSavedFragment()
+                    if (SessionManager.isAdmin)
+                        FormFragmentDirections.actionGlobalUserFragment()
+                    else
+                        FormFragmentDirections.actionFormFragmentToSavedFragment(SessionManager.userId)
                 )
             }
-            R.id.exitItem -> {
+            R.id.logoutItem -> {
                 SessionManager.loggedIn = false
 
                 findNavController().navigate(

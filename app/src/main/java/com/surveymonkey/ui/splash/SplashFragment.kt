@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.surveymonkey.databinding.FragmentSplashBinding
+import com.surveymonkey.manager.SessionManager
+import com.surveymonkey.ui.auth.register.RegisterFragmentDirections
 import com.surveymonkey.ui.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -22,7 +24,10 @@ class SplashFragment : BaseFragment() {
         viewModel.isUserLoggedIn
             .observe(viewLifecycleOwner) {
                 val navArgs = if (it) {
-                    SplashFragmentDirections.actionGlobalFormFragment()
+                    if (SessionManager.isAdmin)
+                        SplashFragmentDirections.actionGlobalUserFragment()
+                    else
+                        SplashFragmentDirections.actionGlobalFormFragment()
                 } else
                     SplashFragmentDirections.actionSplashFragmentToLoginFragment()
 

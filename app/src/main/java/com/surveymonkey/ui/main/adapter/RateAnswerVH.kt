@@ -10,9 +10,8 @@ import com.surveymonkey.databinding.ViewgroupRateBinding
 class RateAnswerVH(private val binding: ViewgroupRateBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    @SuppressLint("SetTextI18n")
-    fun bind(pojo: QuestionPOJO, editable: Boolean, position:Int) {
-        binding.nameTxt.text = "$position. ${pojo.question}"
+    fun bind(pojo: QuestionPOJO, editable: Boolean, position: Int) {
+        binding.nameTxt.text = "%d. %s".format(position, pojo.name)
 
         binding.np.setOnValueChangedListener { _, _, newVal -> pojo.rate = newVal }
         binding.np.isScrollerEnabled = editable

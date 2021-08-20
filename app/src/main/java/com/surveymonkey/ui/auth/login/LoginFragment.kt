@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.surveymonkey.databinding.FragmentLoginBinding
+import com.surveymonkey.manager.SessionManager
 import com.surveymonkey.ui.base.BaseFragment
 import com.surveymonkey.utils.extensions.handleProgress
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -39,8 +40,13 @@ class LoginFragment : BaseFragment() {
             binding.registerBtn.handleProgress(it)
         }
 
-        viewModel.navigateToForm.observe(viewLifecycleOwner) {
-            findNavController().navigate(LoginFragmentDirections.actionGlobalFormFragment())
+        viewModel.navigateToNext.observe(viewLifecycleOwner) {
+            findNavController().navigate(
+                if (SessionManager.isAdmin)
+                    LoginFragmentDirections.actionGlobalUserFragment()
+                else
+                    LoginFragmentDirections.actionGlobalFormFragment()
+            )
         }
     }
 }

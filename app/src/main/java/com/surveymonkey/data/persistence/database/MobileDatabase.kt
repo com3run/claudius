@@ -7,8 +7,8 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.surveymonkey.data.persistence.dao.*
-import com.surveymonkey.data.persistence.demo.Form1
-import com.surveymonkey.data.persistence.demo.Form2
+import com.surveymonkey.data.persistence.dummy.Form1
+import com.surveymonkey.data.persistence.dummy.Form2
 import com.surveymonkey.data.persistence.entity.*
 import timber.log.Timber
 
@@ -25,7 +25,6 @@ abstract class MobileDatabase : RoomDatabase() {
     abstract fun questionDao(): QuestionDao
     abstract fun variantDao(): VariantDao
     abstract fun answerDao(): AnswerDao
-    abstract fun savedFormDao(): SavedFormDao
 
     companion object {
         @Volatile

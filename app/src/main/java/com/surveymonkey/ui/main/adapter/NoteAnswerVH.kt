@@ -10,9 +10,10 @@ import com.surveymonkey.databinding.ViewgroupNoteBinding
 class NoteAnswerVH(private val binding: ViewgroupNoteBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    @SuppressLint("SetTextI18n")
     fun bind(pojo: QuestionPOJO, editable: Boolean, position: Int) {
-        binding.nameTxt.text = "$position. ${pojo.question}"
+        val name = "%d. %s%s".format(position, pojo.name, if (pojo.required) "*" else "")
+        binding.nameTxt.text = name
+
         binding.pojo = pojo
 
         binding.noteEdt.isEnabled = editable

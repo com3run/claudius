@@ -9,8 +9,8 @@ import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
-import com.surveymonkey.data.persistence.demo.Form1
-import com.surveymonkey.data.persistence.demo.Form2
+import com.surveymonkey.data.persistence.dummy.Form1
+import com.surveymonkey.data.persistence.dummy.Form2
 import com.surveymonkey.manager.SessionManager
 import com.surveymonkey.ui.MainActivity
 import org.hamcrest.Matchers.allOf
@@ -23,15 +23,15 @@ import java.lang.Thread.sleep
 @RunWith(AndroidJUnit4::class)
 class FormTest : BaseRobot() {
     @get:Rule
-    val activityRule = ActivityTestRule(MainActivity::class.java)
+    val activityRule = ActivityTestRule(MainActivity::class.java,false,true)
 
     @Test
     fun start() {
+
         register()
-
         fillForm()
-
         sleep(55000)
+
     }
 
     private fun register() {
@@ -144,4 +144,6 @@ class FormTest : BaseRobot() {
         onView(withId(R.id.recyclerView))
             .perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(position, scrollTo()))
     }
+
+
 }

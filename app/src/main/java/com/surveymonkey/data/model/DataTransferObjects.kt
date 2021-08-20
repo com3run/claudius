@@ -6,30 +6,19 @@ import com.surveymonkey.data.persistence.entity.*
 fun UserEntity?.asPOJO(): UserPOJO? {
     return this?.let {
         return UserPOJO(
-            id = it.id,
+            id = it.id?:0,
             username = it.username,
-            name = it.name,
-        )
-    }
-}
-
-fun FormEntity?.asPOJO(): FormPOJO? {
-    return this?.let {
-        return FormPOJO(
-            id = it.id,
             name = it.name
         )
     }
 }
 
-fun SavedFormEntity?.asPOJO(): SavedFormPOJO? {
+
+fun FormEntity?.asPOJO(): FormPOJO? {
     return this?.let {
-        return SavedFormPOJO(
+        return FormPOJO(
             id = it.id,
-            formId = it.formId,
-            userId = it.userId,
-            name = ""
-        )
+            name = it.name)
     }
 }
 
@@ -38,8 +27,9 @@ fun QuestionEntity?.asPOJO(): QuestionPOJO? {
         return QuestionPOJO(
             id = it.id,
             formId = it.formId,
-            question = it.question,
+            name = it.name,
             type = it.type,
+            required = it.required
         )
     }
 }
@@ -49,10 +39,11 @@ fun AnswerEntity?.asPOJO(): AnswerPOJO? {
         return AnswerPOJO(
             id = it.id,
             userId = it.userId,
+            formId = it.formId,
             variantId = it.variantId,
             questionId = it.questionId,
             note = it.note,
-            rate = it.rate,
+            rate = it.rate
         )
     }
 }
@@ -67,6 +58,10 @@ fun VariantEntity?.asPOJO(): VariantPOJO? {
     }
 }
 
+ fun List<UserEntity>?.asPojoList(): List<UserPOJO>? {
+    return this?.map { it.asPOJO()!! }
+}
+
 @JvmName("asPOJOQuestionEntity")
 fun List<QuestionEntity>?.asPOJO(): List<QuestionPOJO>? {
     return this?.map { it.asPOJO()!! }
@@ -79,11 +74,6 @@ fun List<VariantEntity>?.asPOJO(): List<VariantPOJO>? {
 
 @JvmName("asPOJOAnswerEntity")
 fun List<AnswerEntity>?.asPOJO(): List<AnswerPOJO>? {
-    return this?.map { it.asPOJO()!! }
-}
-
-@JvmName("asPOJOSavedFormEntity")
-fun List<SavedFormEntity>?.asPOJO(): List<SavedFormPOJO>? {
     return this?.map { it.asPOJO()!! }
 }
 

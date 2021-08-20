@@ -12,7 +12,6 @@ import com.surveymonkey.utils.widget.MyRadioButton
 class SingleAnswerVH(private val binding: ViewgroupSingleAnswerBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    @SuppressLint("SetTextI18n")
     fun bind(
         pojo: QuestionPOJO,
         editable: Boolean,
@@ -20,7 +19,9 @@ class SingleAnswerVH(private val binding: ViewgroupSingleAnswerBinding) :
         onChange: (position: Int) -> Unit
     ) {
         binding.radioGroup.removeAllViewsInLayout()
-        binding.nameTxt.text = "$position. ${pojo.question}"
+
+        val name = "%d. %s%s".format(position, pojo.name, if (pojo.required) "*" else "")
+        binding.nameTxt.text = name
 
         pojo.variants?.forEach {
             val radioButton = MyRadioButton(binding.root.context)

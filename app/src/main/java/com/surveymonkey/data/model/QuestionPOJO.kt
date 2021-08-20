@@ -5,9 +5,10 @@ import com.surveymonkey.data.enums.QuestionType
 data class QuestionPOJO(
     override var id: Int? = null,
     val formId: Long?,
-    val question: String?,
+    val name: String?,
     val type: QuestionType? = QuestionType.NOTE_ANSWER,
     var variants: List<VariantPOJO>? = listOf(),
     var note: String? = "",
     var rate: Int? = 5,
+    var required: Boolean = false
 ) : BaseFormModel()

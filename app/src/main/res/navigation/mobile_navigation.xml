@@ -39,7 +39,7 @@
         tools:layout="@layout/fragment_form">
         <action
             android:id="@+id/action_formFragment_to_savedFragment"
-            app:destination="@id/savedFragment" />
+            app:destination="@id/completedFragment" />
     </fragment>
 
     <action
@@ -50,24 +50,38 @@
         app:popUpTo="@id/mobile_navigation" />
 
     <fragment
-        android:id="@+id/savedFragment"
-        android:name="com.surveymonkey.ui.saved.SavedFragment"
-        android:label="@string/saved"
-        tools:layout="@layout/fragment_saved">
+        android:id="@+id/usersFragment"
+        android:name="com.surveymonkey.ui.completedForms.users.UsersFragment"
+        android:label="@string/users"
+        tools:layout="@layout/fragment_users">
+        <action
+            android:id="@+id/action_userFragment_to_completedFragment"
+            app:destination="@id/completedFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/completedFragment"
+        android:name="com.surveymonkey.ui.completedForms.CompletedFragment"
+        android:label="@string/completed_forms"
+        tools:layout="@layout/fragment_completed_forms">
+
         <action
             android:id="@+id/action_savedFragment_to_savedDetailFragment"
             app:destination="@id/savedDetailFragment" />
+        <argument
+            android:name="userId"
+            app:argType="long" />
     </fragment>
 
     <fragment
         android:id="@+id/savedDetailFragment"
-        android:name="com.surveymonkey.ui.saved.detail.SavedDetailFragment"
+        android:name="com.surveymonkey.ui.completedForms.detail.CompletedFormDetailFragment"
         android:label="@string/details"
-        tools:layout="@layout/fragment_saved_detail">
+        tools:layout="@layout/fragment_completed_form_detail">
 
         <argument
             android:name="pojo"
-            app:argType="com.surveymonkey.data.model.SavedFormPOJO" />
+            app:argType="com.surveymonkey.data.model.FormPOJO" />
     </fragment>
 
     <action
@@ -76,5 +90,7 @@
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popUpTo="@id/mobile_navigation" />
+
+    <action android:id="@+id/action_global_userFragment" app:destination="@id/usersFragment" />
 
 </navigation>

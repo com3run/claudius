@@ -19,8 +19,8 @@ class LoginVM(private val repo: AuthRepo) : BaseViewModel() {
     private val _loginUiState = MutableLiveData<UiState>()
     val loginUiState: LiveData<UiState> get() = _loginUiState
 
-    private val _navigateToForm = SingleLiveEvent<Boolean>()
-    val navigateToForm: LiveData<Boolean> get() = _navigateToForm
+    private val _navigateToNext = SingleLiveEvent<Boolean>()
+    val navigateToNext: LiveData<Boolean> get() = _navigateToNext
 
     fun login() {
         viewModelScope.launch {
@@ -29,13 +29,13 @@ class LoginVM(private val repo: AuthRepo) : BaseViewModel() {
             val userModel = repo.getUserByUsername(username = username.value)
 
             if (userModel != null) {
-                val username = username.value
+                val username = username.value?.lowercase()
 
                 SessionManager.loggedIn = true
                 SessionManager.username = username
                 SessionManager.userId = userModel.id.toLongOrZero()
 
-                _navigateToForm.value = true
+                _navigateToNext.value = true
                 _loginUiState.value = UiState.SUCCESS
             } else {
                 showError(ErrorDialogModel(messageRes = R.string.user_not_fount))

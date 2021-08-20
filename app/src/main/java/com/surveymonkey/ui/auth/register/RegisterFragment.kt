@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.surveymonkey.databinding.FragmentRegisterBinding
+import com.surveymonkey.manager.SessionManager
+import com.surveymonkey.ui.auth.login.LoginFragmentDirections
 import com.surveymonkey.ui.base.BaseFragment
 import com.surveymonkey.utils.extensions.handleProgress
 import com.surveymonkey.utils.showSoftKeyboard
@@ -34,8 +36,13 @@ class RegisterFragment : BaseFragment() {
             binding.registerBtn.handleProgress(it)
         }
 
-        viewModel.navigateToForm.observe(viewLifecycleOwner) {
-            findNavController().navigate(RegisterFragmentDirections.actionGlobalFormFragment())
+        viewModel.navigateToNext.observe(viewLifecycleOwner) {
+            findNavController().navigate(
+                if (SessionManager.isAdmin)
+                    RegisterFragmentDirections.actionGlobalUserFragment()
+                else
+                    RegisterFragmentDirections.actionGlobalFormFragment()
+            )
         }
     }
 }

@@ -1,6 +1,5 @@
 package com.surveymonkey.ui.main.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,10 +10,11 @@ import com.surveymonkey.utils.widget.MyCheckBox
 class MultiAnswerVH(private val binding: ViewgroupMultiAnswerBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    @SuppressLint("SetTextI18n")
-    fun bind(pojo: QuestionPOJO, editable: Boolean, position: Int, ) {
+    fun bind(pojo: QuestionPOJO, editable: Boolean, position: Int) {
         binding.containerLl.removeAllViewsInLayout()
-        binding.nameTxt.text = "$position. ${pojo.question}"
+
+        val name = "%d. %s%s".format(position, pojo.name, if (pojo.required) "*" else "")
+        binding.nameTxt.text = name
 
         pojo.variants?.forEach {
             val checkBox = MyCheckBox(binding.root.context)

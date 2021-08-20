@@ -3,6 +3,7 @@ package com.surveymonkey.data.model
 data class AnswerPOJO(
     val id: Int?,
     val userId: Long?,
+    val formId: Long?,
     val questionId: Long?,
     val variantId: Long?,
     val note: String?,

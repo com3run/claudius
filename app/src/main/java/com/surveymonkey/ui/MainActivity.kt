@@ -7,6 +7,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.surveymonkey.R
 import com.surveymonkey.databinding.ActivityMainBinding
+import com.surveymonkey.manager.SessionManager
 import com.surveymonkey.utils.hideSoftKeyboard
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +28,13 @@ class MainActivity : AppCompatActivity() {
 
         binding.toolbar.setupWithNavController(
             navController,
-            AppBarConfiguration(setOf(R.id.loginFragment, R.id.formFragment))
+            AppBarConfiguration(
+                setOf(
+                    R.id.loginFragment,
+                    R.id.formFragment,
+                    if (SessionManager.isAdmin) R.id.usersFragment else 0
+                )
+            )
         )
     }
 

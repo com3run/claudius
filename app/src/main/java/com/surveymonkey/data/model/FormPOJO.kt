@@ -6,5 +6,6 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class FormPOJO(
     override var id: Int? = null,
-    val name: String?,
-): BaseFormModel(), Parcelable
+    var userId: Long? = null,
+    var name: String?,
+) : BaseFormModel(), Parcelable

@@ -6,19 +6,15 @@ import com.surveymonkey.data.persistence.entity.AnswerEntity
 import com.surveymonkey.data.persistence.entity.SavedFormEntity
 import com.surveymonkey.manager.SessionManager
 import com.surveymonkey.ui.base.BaseRepo
+import timber.log.Timber
 
 
 class FormRepo(
     private val formDao: FormDao,
     private val questionDao: QuestionDao,
     private val variantDao: VariantDao,
-    private val answerDao: AnswerDao,
-    private val savedFormDao: SavedFormDao,
+    private val answerDao: AnswerDao
 ) : BaseRepo() {
-
-    suspend fun getRandomForm(userId: Long = SessionManager.userId) = call {
-        formDao.getRandomForm().asPOJO()
-    }
 
     suspend fun getForms() = call {
         formDao.getForms().asPOJO()
@@ -36,27 +32,24 @@ class FormRepo(
         variantDao.getVariantsByQuestionId(questionId).asPOJO()
     }
 
-    suspend fun getAnswerByIds(userId: Long?, savedFormId: Long?, questionId: Long?) = call {
+    suspend fun getAnswerByIds(userId: Long?, formId: Long?, questionId: Long?) = call {
         answerDao.getAnswerByIds(
             userId = userId,
-            savedFormId = savedFormId,
+            formId = formId,
             questionId = questionId
         ).asPOJO()
     }
 
-    suspend fun insertForm(savedFormEntity: SavedFormEntity) = call {
-        savedFormDao.insert(savedFormEntity)
-    }
 
     suspend fun insertAnswer(answerEntity: AnswerEntity) = call {
         answerDao.insert(answerEntity)
     }
 
-    suspend fun getSavedForms() = call {
-        savedFormDao.getForms().asPOJO()
+    suspend fun getCompletedForms() = call {
+        answerDao.getCompletedForms().asPOJO()
     }
 
-    suspend fun getSavedFormsByUserId(userId: Long = SessionManager.userId) = call {
-        savedFormDao.getFormsByUserId(userId).asPOJO()
+    suspend fun getCompletedFormsByUserId(userId: Long = SessionManager.userId) = call {
+        answerDao.getCompletedFormsByUserId(userId).asPOJO()
     }
 }

@@ -14,8 +14,13 @@
     <string name="form">Form</string>
     <string name="note">Note...</string>
     <string name="save">Save</string>
-    <string name="saved">Saved</string>
+    <string name="completed_forms">Completed forms</string>
     <string name="exit">Exit</string>
     <string name="details">Details</string>
     <string name="form_list_is_empty">Form list is empty</string>
+    <string name="users">Users</string>
+    <string name="helper_text_username">Username must be at least 5 characters</string>
+    <string name="error_msg_form_note_validation">Note must be at least 15 characters</string>
+    <string name="error_msg_form_single_validation">Please fill in all the required fields</string>
+    <string name="error_msg_form_multi_validation">Multiple-choice question requires at least 2 options</string>
 </resources>

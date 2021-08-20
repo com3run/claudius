@@ -20,8 +20,8 @@ class RegisterVM(private val repo: AuthRepo) : BaseViewModel() {
     private val _registerUiState = MutableLiveData<UiState>()
     val registerUiState: LiveData<UiState> get() = _registerUiState
 
-    private val _navigateToForm = SingleLiveEvent<Boolean>()
-    val navigateToForm: LiveData<Boolean> get() = _navigateToForm
+    private val _navigateToNext = SingleLiveEvent<Boolean>()
+    val navigateToNext: LiveData<Boolean> get() = _navigateToNext
 
     fun register() {
         viewModelScope.launch {
@@ -35,7 +35,7 @@ class RegisterVM(private val repo: AuthRepo) : BaseViewModel() {
                 _registerUiState.value = UiState.ERROR
             } else {
                 val name = name.value
-                val username = username.value
+                val username = username.value?.lowercase()
 
                 val userId = repo.insert(UserEntity(name = name, username = username))
 
@@ -43,7 +43,7 @@ class RegisterVM(private val repo: AuthRepo) : BaseViewModel() {
                 SessionManager.username = username
                 SessionManager.userId = userId
 
-                _navigateToForm.value = true
+                _navigateToNext.value = true
                 _registerUiState.value = UiState.SUCCESS
             }
         }

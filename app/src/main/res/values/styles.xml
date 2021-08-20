@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Widget.SurveyMonkey.MaterialButton" parent="Widget.SurveyMonkey.BaseMaterialButton">
-        <item name="android:textColor">@color/white</item>
-        <item name="backgroundTint">?colorPrimary</item>
+
     </style>
 
     <style name="Widget.SurveyMonkey.TextInputEditText" parent="Widget.SurveyMonkey.BaseTextInputEditText">
