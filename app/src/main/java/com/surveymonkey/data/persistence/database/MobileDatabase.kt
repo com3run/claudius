@@ -10,7 +10,6 @@ import com.surveymonkey.data.persistence.dao.*
 import com.surveymonkey.data.persistence.dummy.Form1
 import com.surveymonkey.data.persistence.dummy.Form2
 import com.surveymonkey.data.persistence.entity.*
-import timber.log.Timber
 
 @Database(
     entities =
@@ -47,7 +46,6 @@ abstract class MobileDatabase : RoomDatabase() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
 
-                Timber.e("RoomDatabase onCreate")
 
                 INSTANCE?.let {
                     Form1().create(

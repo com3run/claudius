@@ -1,6 +1,5 @@
 package com.surveymonkey.data.persistence.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.surveymonkey.data.persistence.entity.UserEntity
 
